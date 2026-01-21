@@ -1,12 +1,8 @@
 from flask import Flask, render_template, request
 import requests
-# import pickle
 import folium
 
 app = Flask(__name__)
-
-# model = pickle.load(open("model.pkl", "rb"))
-# vectorizer = pickle.load(open("vectorizer.pkl", "rb"))
 
 def geocode_address(address):
     url = "https://nominatim.openstreetmap.org/search"
@@ -32,7 +28,7 @@ def get_boundary_box(lat, lon, delta=0.00045):
 @app.route("/", methods=["GET", "POST"])
 def index():
     result = None
-    map_html = None
+    map = None
     error = None
 
     if request.method == "POST":
@@ -45,30 +41,14 @@ def index():
         else:
             lat, lon = geo
             boundary = get_boundary_box(lat, lon)
-
-            
             m = folium.Map(location=[lat, lon], zoom_start=17)
-
-            
             folium.Marker(
                 [lat, lon],
                 popup=address,
                 tooltip="Property Location"
             ).add_to(m)
 
-            # Boundary box (rectangle)
-            # folium.Rectangle(
-            #     bounds=[
-            #         [boundary["South Latitude"], boundary["West Longitude"]],
-            #         [boundary["North Latitude"], boundary["East Longitude"]]
-            #     ],
-            #     color="blue",
-            #     fill=True,
-            #     fill_opacity=0.2
-            # ).add_to(m)
-
-            map_html = m._repr_html_()
-
+            map = m._repr_html_()
             result = {
                 "address": address,
                 "boundary": boundary,
@@ -76,7 +56,7 @@ def index():
                 "longitude": lon
             }
 
-    return render_template("index.html", result=result, map_html=map_html, error=error)
+    return render_template("index.html", result=result, map=map, error=error)
 
 if __name__ == "__main__":
     app.run(debug=True)

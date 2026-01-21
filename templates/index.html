@@ -32,9 +32,6 @@
         <p><span class="label">Latitude:</span> {{ result.latitude }}</p>
         <p><span class="label">Longitude:</span> {{ result.longitude }}</p>
 
-        <!-- <h3>Confidence Score</h3>
-        <p>{{ result.confidence }}</p> -->
-
         <h3>Boundary Dimensions</h3>
         <ul>
             <li><span class="label">South Latitude:</span> {{ result.boundary["South Latitude"] }}</li>
@@ -44,10 +41,10 @@
         </ul>
     </div>
     {% endif %}
-    {% if map_html %}
+    {% if map %}
     <div class="result">
         <h3>Property Location Map</h3>
-        {{ map_html | safe }}
+        {{ map | safe }}
     </div>
     {% endif %}
     {% if error %}
