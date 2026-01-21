@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>USA Property Locator</title>
+    <link rel="stylesheet" href="../static/index.css">
+    <script>
+        function showLoading() {
+            document.getElementById("loading").style.display = "block";
+        }
+    </script>
+</head>
+
+<body>
+<div class="center">
+
+    <h2>USA Property Locator</h2>
+    <p>Enter a valid USA address to get Latitude, Longitude & Boundary Dimensions</p>
+
+    <form method="POST" onsubmit="showLoading()">
+        <input type="text" name="address" placeholder="eg. 75 3rd Ave, New York, NY 10003, USA" required />
+        <button type="submit">Search</button>
+    </form>
+
+    <div id="loading" class="loading">Fetching location data...</div>
+
+    {% if result %}
+    <div class="result">
+        <h3>Address</h3>
+        <p>{{ result.address }}</p>
+
+        <h3>Coordinates</h3>
+        <p><span class="label">Latitude:</span> {{ result.latitude }}</p>
+        <p><span class="label">Longitude:</span> {{ result.longitude }}</p>
+
+        <!-- <h3>Confidence Score</h3>
+        <p>{{ result.confidence }}</p> -->
+
+        <h3>Boundary Dimensions</h3>
+        <ul>
+            <li><span class="label">South Latitude:</span> {{ result.boundary["South Latitude"] }}</li>
+            <li><span class="label">North Latitude:</span> {{ result.boundary["North Latitude"] }}</li>
+            <li><span class="label">West Longitude:</span> {{ result.boundary["West Longitude"] }}</li>
+            <li><span class="label">East Longitude:</span> {{ result.boundary["East Longitude"] }}</li>
+        </ul>
+    </div>
+    {% endif %}
+    {% if map_html %}
+    <div class="result">
+        <h3>Property Location Map</h3>
+        {{ map_html | safe }}
+    </div>
+    {% endif %}
+    {% if error %}
+    <div class="result">
+        <h3>Error</h3>
+        <p>{{ error }}</p>
+    </div>
+    {% endif %}
+
+</div>
+</body>
+</html>
