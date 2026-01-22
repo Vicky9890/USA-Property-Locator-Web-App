@@ -45,7 +45,8 @@ def get_boundary(lat, lon, delta=0.00045):
 - Prevents incorrect map rendering
 
 ## Output
-<img width="1849" height="925" alt="image" src="https://github.com/user-attachments/assets/83a57a42-281b-4c53-987b-d0436038639b" />
-<img width="1880" height="929" alt="image" src="https://github.com/user-attachments/assets/6a46f8d3-ba52-4e61-9351-bcfe251f6c28" />
+<img width="1869" height="916" alt="image" src="https://github.com/user-attachments/assets/c918223e-6ee7-4cac-826a-9d799bd7dc9b" />
+<img width="1864" height="926" alt="image" src="https://github.com/user-attachments/assets/6845f72a-42e9-48c2-ae75-74f0194693e2" />
+
 
 
