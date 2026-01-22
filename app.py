@@ -17,7 +17,7 @@ def geocode_address(address):
         return None
     return float(response[0]["lat"]), float(response[0]["lon"])
 
-def get_boundary_box(lat, lon, delta=0.00045):
+def get_boundary(lat, lon, delta=0.00045):
     return {
         "South Latitude": round(lat - delta, 6),
         "North Latitude": round(lat + delta, 6),
@@ -40,7 +40,7 @@ def index():
 
         else:
             lat, lon = geo
-            boundary = get_boundary_box(lat, lon)
+            boundary = get_boundary(lat, lon)
             m = folium.Map(location=[lat, lon], zoom_start=17)
             folium.Marker(
                 [lat, lon],
