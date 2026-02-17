@@ -41,7 +41,7 @@ def index():
         else:
             lat, lon = geo
             boundary = get_boundary(lat, lon)
-            m = folium.Map(location=[lat, lon], zoom_start=22)
+            m = folium.Map(location=[lat, lon], zoom_start=18)
             folium.Marker(
                 [lat, lon],
                 popup=address,
@@ -60,5 +60,4 @@ def index():
 
 if __name__ == "__main__":
     app.run(debug=True)
-
 
