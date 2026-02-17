@@ -11,6 +11,7 @@ def geocode_address(address):
         "format": "json",
         "limit": 1
     }
+    
     headers = {"User-Agent": "property-locator"}
     response = requests.get(url, params=params, headers=headers).json()
     if not response:
